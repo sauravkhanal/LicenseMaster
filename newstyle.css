@@ -380,6 +380,10 @@ footer a:hover{
         min-height: 30px;
     }
 
+    .nav div {
+        display: flex;
+        justify-content: center;
+    }
     .mid_left::before{
         background-image: none;
     }
