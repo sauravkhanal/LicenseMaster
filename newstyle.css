@@ -213,6 +213,11 @@ body{
     border: 1px dotted red;
 } */
 
+.mobile .qr_code {
+    display: flex;
+    flex-direction: column;
+}
+
 .mobile> .qr_code>.qr {
     /* max-width: 150px; */
     max-height: 150px;
@@ -387,10 +392,10 @@ footer a:hover{
         flex-basis: 100%;
     }
 
-    .mobile .qr_code{
+    /* .mobile .qr_code{
         display: flex;
         flex-direction: row-reverse;
-    }
+    } */
     .mobile .right img{
         display: none;
     }
