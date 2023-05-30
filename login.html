@@ -88,7 +88,7 @@
     // sign in existing user with email and password
 
     document.getElementById("login_btn").addEventListener("click",function()  {
-        window.alert('btn clicked');
+        // window.alert('btn clicked');
 
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
@@ -99,6 +99,7 @@
         alert("Login Successful")
         window.open("loggedin.html","_self")
         const user = userCredential.user;
+        console.log(user);
         // ...
         })
         .catch((error) => {
