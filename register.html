@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="register_login.css">
+</head>
+<body>
+    
+    <h1>Welcome to <a id="lm" href="index.html">License Master</a></h1>
+    <p>Please login or register to continue</p>
+    <form action="">
+        <div class="name">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" >
+        </div>
+
+        <div class="space"></div>
+        <div class="space"></div>
+
+        <div class="email">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+
+        <div class="space"></div>
+        <div class="space"></div>
+
+        <div class="password">
+            <label for="password">Password</label>
+            <input type="text" name="password" id="password" required minlength="6">
+        </div>
+
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="space"></div>
+
+        <button type="submit">Register</button>
+
+
+    </form>
+
+    <div class="or">
+        <p><sup>  License</sup> or login with <sup>License</sup></p>
+    </div>
+
+    <div class="login_google"><button ><img src="./images/google_logo.svg" alt=""></button></div>
+
+    <div class="have_account">Already have an account ? <span><a href="login.html" class="login">Log in</a></span></div>
+</body>
+</html>
