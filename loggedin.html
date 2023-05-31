@@ -21,7 +21,7 @@
         blockquote  {
             color: gold;
         }
-        #logout  {
+        button {
             /* background-color: red; */
             padding: 5px 10px 5px 10px;
             border-radius: 100vmax;
@@ -30,13 +30,13 @@
             font-weight: bold;
             background-color: white;
         }
-        #logout:hover {
+        button:hover {
             background-color: gray;
         }
     </style>
 </head>
 <body>
-    <h1 class="">Hey you're logged in !!</h1>
+    <h1 class="hero_text">Hey you're logged in !!</h1>
     <h2>This page is still under development</h2>
     <blockquote>
         "Believe you can, and you're halfway there."
@@ -44,7 +44,13 @@
     </blockquote>
 
     <button id="logout">Log out</button>
-
+    <br>
+    <br>
+    <button id="me">Who am I?</button>
+    <br><br>
+    <hr>
+    <br>
+    <p id="user_detail"></p>
 
 <!-- for firebase authentication -->
 
@@ -73,6 +79,7 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth();
+
     // console.log(app);
     // console.log(analytics);
     // console.log(auth)
@@ -81,7 +88,7 @@
     // signOut
 
     document.getElementById("logout").addEventListener("click",function()  {
-        window.alert('logout btn clicked');
+        // window.alert('logout btn clicked');
 
         signOut(auth).then(() => {
         // Sign-out successful.
@@ -96,6 +103,19 @@
         });
             
     });
+
+    document.getElementById("me").addEventListener("click", function(e)  {
+        // alert("who am i?")
+        // e.preventDefault();
+        const user = auth.currentUser;
+
+        document.getElementById("user_detail").innerHTML = "Email : " + user.email + "<br>" + "UID : " + user.uid + "<br>" + "Display Name : " + user.displayName + "<br>" + "Email verified : " + user.emailVerified; 
+    })
+
+</script>
+
+<script defer >
+        document.getElementById("hero_text").innerHTML = `Welcome back ${user.email} you're logged in`;
 </script>
 </body>
 </html>
