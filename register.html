@@ -122,7 +122,7 @@
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             alert('Account has been created successfully');
-            window.open('login.html');
+            window.open('login.html',"_self");
 
             // Signed in 
             const user = userCredential.user;
