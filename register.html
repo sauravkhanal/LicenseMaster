@@ -12,7 +12,7 @@
     
     <h1>Welcome to <a id="lm" href="index.html">License Master</a></h1>
     <p>Please login or register to continue</p>
-    <form action="">
+    <form action="" id="register form">
         <div class="name">
             <label for="name">Full Name</label>
             <input type="text" id="name" >
@@ -112,16 +112,18 @@
 
     // });
 
-    document.getElementById("register").addEventListener("click",function()  {
-        alert(' btn clicked ');const auth = getAuth();
-
+    document.getElementById("register").addEventListener("click",function(e)  {
+        // alert(' btn clicked ');const auth = getAuth();
+        e.preventDefault()
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         
         
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
-            alert('Account has been created')
+            alert('Account has been created successfully');
+            window.open('login.html');
+
             // Signed in 
             const user = userCredential.user;
             console.log(user);
@@ -130,6 +132,7 @@
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            alert(`Oops error occured.\n ${errorCode} ${errorMessage}`)
             // ..
           });
 
