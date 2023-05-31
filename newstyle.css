@@ -343,7 +343,7 @@ footer a:hover{
 
     .mid>.mid_left{
         position: relative;
-        flex-basis: 100%;
+        flex-basis: 90%;
         /* background-image: url(images/vector.jpg); */
         /* opacity: .3; */
         /* background-repeat: no-repeat; */
@@ -393,7 +393,7 @@ footer a:hover{
         position: relative;
     }
     .mobile >* {
-        flex-basis: 100%;
+        flex-basis: 90%;
     }
 
     /* .mobile .qr_code{
