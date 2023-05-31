@@ -87,8 +87,9 @@
 
     // sign in existing user with email and password
 
-    document.getElementById("login_btn").addEventListener("click",function()  {
+    document.getElementById("login_btn").addEventListener("click",function(e)  {
         // window.alert('btn clicked');
+        e.preventDefault();
 
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
@@ -96,8 +97,8 @@
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
         // Signed in 
-        alert("Login Successful")
-        window.open("loggedin.html","_self")
+        window.open("loggedin.html","_self");
+        alert("Login Successful");
         const user = userCredential.user;
         console.log(user);
         // ...
