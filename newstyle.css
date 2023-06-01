@@ -388,6 +388,16 @@ footer a:hover{
         background-image: none;
     }
 
+    #find_faculty {
+        width: 125px;
+    }
+    
+    .qr {
+        width:100px;
+        align-self: center;
+    }
+
+
     .mobile {
         flex-direction: column;
         position: relative;
