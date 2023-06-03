@@ -34,10 +34,13 @@
     const checkAuthState = async() =>  {
         onAuthStateChanged(auth,user =>  {
             if(user)  {
-            window.open("loggedin.html","_self");
-            alert(`Welcome back ${user.email} you're still logged in`)
+            const page = window.location.href.split("/")[3].split(".")[0] != ""
+            if (page == "" || page =="index")  {  //only show when on index page
+                
+                window.open("loggedin.html","_self");
+                alert(`Welcome back ${user.email} you're still logged in`)
             }
-    
+            }
         })
         }
         checkAuthState();
