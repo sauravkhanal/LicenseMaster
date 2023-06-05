@@ -1,13 +1,6 @@
-
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, signOut, sendEmailVerification} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyB5WHScYZt7yHCv3LDk8TuI9BkQgDvO0iM",
     authDomain: "nepalengineeringmcq.firebaseapp.com",
@@ -21,13 +14,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth();
-
-// console.log(app);
-// console.log(analytics);
-// console.log(auth)
-
+const auth = getAuth(app);
 
 // signOut
 
@@ -48,6 +35,7 @@ document.getElementById("logout").addEventListener("click",function()  {
         
 });
 
+//get user data
 document.getElementById("me").addEventListener("click", function(e)  {
     // alert("who am i?")
     // e.preventDefault();
@@ -56,3 +44,18 @@ document.getElementById("me").addEventListener("click", function(e)  {
     document.getElementById("user_detail").innerHTML = "Email : " + user.email + "<br>" + "UID : " + user.uid + "<br>" + "Display Name : " + user.displayName + "<br>" + "Email verified : " + user.emailVerified; 
 })
 
+//send email verification
+document.getElementById("verifyEmail").addEventListener('click', function () {
+
+    sendEmailVerification(auth.currentUser)
+    .then(() => {
+        alert(`Email verification link sent to ${user.email}`);
+    })
+
+    .catch((error)=>  {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(`Oops! Error occured\n ${errorCode} : ${errorMessage}`);
+    });
+
+})
