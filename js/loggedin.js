@@ -44,18 +44,22 @@ document.getElementById("me").addEventListener("click", function(e)  {
     document.getElementById("user_detail").innerHTML = "Email : " + user.email + "<br>" + "UID : " + user.uid + "<br>" + "Display Name : " + user.displayName + "<br>" + "Email verified : " + user.emailVerified; 
 })
 
-//send email verification
+//send email verification link
 document.getElementById("verifyEmail").addEventListener('click', function () {
-
-    sendEmailVerification(auth.currentUser)
-    .then(() => {
-        alert(`Email verification link sent to ${user.email}`);
-    })
-
-    .catch((error)=>  {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(`Oops! Error occured\n ${errorCode} : ${errorMessage}`);
-    });
+    if (user.emailVerified)  {
+        alert(`${user.email} is already verified !!`)
+    }
+    else  {
+        sendEmailVerification(auth.currentUser)
+        .then(() => {
+            alert(`Email verification link sent to ${user.email}`);
+        })
+    
+        .catch((error)=>  {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(`Oops! Error occured\n ${errorCode} : ${errorMessage}`);
+        });
+    }
 
 })
