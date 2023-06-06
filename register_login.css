@@ -80,14 +80,14 @@ sup {
     text-decoration: underline;
     text-decoration-color: var(--color);
 }
-.login_google > img {
+#login_google > img {
     display: flex;
     align-items: center;
     /* justify-content: center; */
     
 }
 
-.login_google > button{
+#login_google > button{
     /* display: flex; */
     border-radius: 100vmax;
     background-color: white;
