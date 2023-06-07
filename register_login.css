@@ -53,10 +53,12 @@ form>div>input {
     padding: 0 2ch;
 }
 
-form > button {
+ button {
     height: 2.5rem;
     border-radius:100vmax;
     width: 300px;
+    border: 2px solid black;
+    transition: 0.5s;
 
 }
 
@@ -97,10 +99,13 @@ sup {
 button  {
     background-color: var(--accent_color);
     color:var(--button_color);
+    border-radius: 100vmax;
 }
 
 button:hover  {
-    box-shadow: 2px 2px 5px 1px var(--color) ;
+    /* box-shadow: 1px 1px 5px 1px var(--color) ; */
+    /* translate:4px; */
+    transform: scale(1.05);
 }
 input:hover {
     background-color: rgba(181, 208, 255, 1);
@@ -120,4 +125,22 @@ form input:focus {
     html {
         transform: scale(0.8);
     }
+}
+
+#popup {
+    max-width: 700px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 5px black;
+
+}
+#popup::backdrop {
+    background-color: rgb(0 0 0 );
+    opacity: .6;
+}
+#popup button {
+
+    width: 100px;
+
+
 }

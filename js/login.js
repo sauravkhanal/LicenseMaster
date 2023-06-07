@@ -37,18 +37,22 @@
         const password = document.getElementById("password").value;
 
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(() => {
         // Signed in 
         window.open("loggedin.html","_self");
         // alert("Login Successful");
-        const user = userCredential.user;
-        console.log(user);
+        // const user = userCredential.user;
+        // console.log(user);
         // ...
         })
         .catch((error) => {
          const errorCode = error.code;
-         const errorMessage = error.message;
-         alert(`Oops! Error occured\n ${errorCode} : ${errorMessage}`)
+        //  const errorMessage = error.message;
+        //  alert(`Oops! Error occured\n ${errorCode} : ${errorMessage}`)
+
+         const popup = document.getElementById('popup');
+         document.getElementById('popup-text').innerHTML = `${generateErrorMessage(errorCode)} `
+         popup.showModal();
         });
 
 
@@ -80,3 +84,32 @@ document.getElementById('login_google').addEventListener('click', function (e)  
     alert(`Oops! Error occured\n ${errorCode} : ${errorMessage} \n email ${email}`);
   });
 });
+
+
+//close modal
+
+document.querySelector('#popup-exit-btn').addEventListener('click', () => {
+  document.querySelector('#popup').close();
+})
+
+
+
+function generateErrorMessage (errorCode)  {
+  switch(errorCode)  {
+    case 'auth/user-not-found' :
+      return "User Doesn't exist";
+    
+    case 'auth/wrong-password' :
+      return "Incorrect Password"
+
+    case 'auth/invalid-email' :
+      return "The Email is invalid";
+
+    case 'auth/missing-password' :
+      return "please enter your password."
+
+    default :
+    return(errorCode)
+    
+  }
+}
