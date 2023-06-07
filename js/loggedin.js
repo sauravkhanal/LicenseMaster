@@ -24,7 +24,7 @@ document.getElementById("logout").addEventListener("click",function()  {
     signOut(auth).then(() => {
     // Sign-out successful.
     // alert("sign out successful !")
-    window.open("login.html","_self")
+    window.open("https://orionisacademy.com","_self")
 
     }).catch((error) => {
     // An error happened.
