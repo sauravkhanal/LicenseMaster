@@ -46,6 +46,8 @@ document.getElementById("me").addEventListener("click", function(e)  {
 
 //send email verification link
 document.getElementById("verifyEmail").addEventListener('click', function () {
+    const user = auth.currentUser;
+
     if (user.emailVerified)  {
         alert(`${user.email} is already verified !!`)
     }
