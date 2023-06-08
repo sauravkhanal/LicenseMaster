@@ -129,6 +129,7 @@ form input:focus {
 
 #popup {
     max-width: 700px;
+    border-width: 2px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 2px 2px 5px black;
