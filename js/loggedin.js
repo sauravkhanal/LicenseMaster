@@ -24,7 +24,7 @@ document.getElementById("logout").addEventListener("click",function()  {
     signOut(auth).then(() => {
     // Sign-out successful.
     // alert("sign out successful !")
-    window.open("https://orionisacademy.com","_self")
+    window.open("index.html","_self")
 
     }).catch((error) => {
     // An error happened.
@@ -54,14 +54,29 @@ document.getElementById("verifyEmail").addEventListener('click', function () {
     else  {
         sendEmailVerification(auth.currentUser)
         .then(() => {
-            alert(`Email verification link sent to ${user.email}`);
+            // alert(`Email verification link sent to ${user.email}`);
+            const popup = document.getElementById('popup');
+            document.getElementById('popup-text').innerHTML = `<h3>Successful !</h3>Email verification link sent to ${user.email}`
+            popup.showModal();
+
         })
     
         .catch((error)=>  {
             const errorCode = error.code;
             const errorMessage = error.message;
             alert(`Oops! Error occured\n ${errorCode} : ${errorMessage}`);
+            const popup = document.getElementById('popup');
+            document.getElementById('popup-text').innerHTML = `<h3>Oops! Error occured</h3><br> ${errorCode} : ${errorMessage}`
+            popup.showModal();
         });
     }
 
 })
+
+
+
+
+document.querySelector('#popup-exit-btn').addEventListener('click', () => {
+    document.querySelector('#popup').close();
+  })
+  
