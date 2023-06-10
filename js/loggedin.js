@@ -64,7 +64,7 @@ document.getElementById("verifyEmail").addEventListener('click', function () {
         .catch((error)=>  {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert(`Oops! Error occured\n ${errorCode} : ${errorMessage}`);
+            // alert(`Oops! Error occured\n ${errorCode} : ${errorMessage}`);
             const popup = document.getElementById('popup');
             document.getElementById('popup-text').innerHTML = `<h3>Oops! Error occured</h3><br> ${errorCode} : ${errorMessage}`
             popup.showModal();
