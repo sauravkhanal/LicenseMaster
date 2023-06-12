@@ -27,7 +27,7 @@ function validateEmail(email) {
     return false;
   }
 
-  return null; // No error
+  return true; // No error
 }
 
 const popup = document.getElementById("popup")
@@ -54,7 +54,7 @@ $("#register").click(function(e)  {
   if (email == "")  {
     showPopup("Please Enter your Email")
   }
-  else if (!validateEmail(email) == false) {
+  else if (validateEmail(email) == false) {
     showPopup("Invalid Email format !!")
   }
   else if(password.length < 6)  {
