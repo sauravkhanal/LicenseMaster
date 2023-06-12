@@ -69,7 +69,6 @@ $("#register").click(function(e)  {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-<<<<<<< HEAD
       
       if (errorCode == "auth/email-already-in-use")
         showPopup ("Account already exists !! <br> Please recover your password if you've forgot.");
