@@ -63,8 +63,9 @@ $("#register").click(function(e)  {
   else {
     createUserWithEmailAndPassword(auth, email, password)
     .then(() => {
-      showPopup('Account has been created successfully');
-      window.open('login.html',"_self");
+      showPopup('Account has been created successfully <br> You will be redirected to login page.');
+      setTimeout(function goToLogin() {window.open('login.html',"_self")}, 5000);
+
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -73,8 +74,7 @@ $("#register").click(function(e)  {
       if (errorCode == "auth/email-already-in-use")
         showPopup ("Account already exists !! <br> Please recover your password if you've forgot.");
       else
-        showPopup(`Oops error occured.<br> ${errorCode} ${errorMessage}`)
+        showPopup(`Oops error occured.<br> ${errorCode} ${errorMessage}`);
     });        
   }
 })
-
