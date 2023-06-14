@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"
+import { validateEmail,showPopup,closePopup } from "./modules.js";
+closePopup();
 
 const firebaseConfig = {
     apiKey: "AIzaSyB5WHScYZt7yHCv3LDk8TuI9BkQgDvO0iM",
@@ -16,34 +17,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
-
-function validateEmail(email) {
-  // Regular expression for email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // Check if the email matches the regex pattern
-  if (!emailRegex.test(email)) {
-    return false;
-}
-
-  return true; // No error
-}
-
-const popup = document.getElementById("popup")
-
-function showPopup(text)  {
-  $("#popup-text").html(text);
-  popup.showModal()
-  // $("#popup").showModal(); 
-  // doesn't work with jquery
-
-}
-
-$("#popup-exit-btn").click( ()=>  {
-  popup.close()
-  // $("#popup").hide();
-})
 
 $("#register").click(function(e)  {
 

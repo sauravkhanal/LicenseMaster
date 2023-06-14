@@ -74,8 +74,6 @@ document.getElementById("verifyEmail").addEventListener('click', function () {
 })
 
 
-
-
 document.querySelector('#popup-exit-btn').addEventListener('click', () => {
     document.querySelector('#popup').close();
   })
