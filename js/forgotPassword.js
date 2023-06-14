@@ -16,21 +16,53 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-document.getElementById("recovery_mail").addEventListener('click', function (e) {
+$('#recovery_mail').click((e) =>  {
+
     e.preventDefault();
-    console.log(1);
-
     const email = document.getElementById('email').value;
-
-    sendPasswordResetEmail(auth, email)
+    
+    if (email == "")  {
+        showPopup("Please Enter your Email")
+    }
+    else if (validateEmail(email) == false) {
+        showPopup("Invalid Email format !!")
+    }
+    else {
+        sendPasswordResetEmail(auth, email)
         .then(() => {
-            alert(`Password reset email sent to ${email}`);
+            showPopup(`Password reset email sent to <strong>"${email}"</strong>`);
         })
-
+        
         .catch((error)=>  {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert(`Oops! Error occured\n ${errorCode} : ${errorMessage}`);
+            if (errorCode == "auth/user-not-found") {
+                showPopup("<h3>Account doesn't exist!</h3><br>Please register.")
+            }
+            else {
+                showPopup(`Oops! Error occured<br> ${errorCode} <br> ${errorMessage}`);
+            }
         });
+    }
+});
+    
+const popup = document.getElementById("popup") //dialog doesn't work with jquery
 
+$("#popup-exit-btn").click(()=>  {
+    popup.close()
 })
+
+function showPopup(text)  {
+  $("#popup-text").html(text);
+  popup.showModal()
+}
+
+function validateEmail(email) {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Check if the email matches the regex pattern
+    if (!emailRegex.test(email)) {
+      return false;
+    }
+    return true; // No error
+}
