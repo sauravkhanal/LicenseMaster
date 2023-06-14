@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"
+import { getAuth, createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"
 import { validateEmail,showPopup,closePopup } from "./modules.js";
 closePopup();
 
@@ -51,3 +51,23 @@ $("#register").click(function(e)  {
     });        
   }
 })
+
+$('#login_google').click((e) => {
+	// e.preventDefault;
+	const provider = new GoogleAuthProvider();
+	signInWithPopup(auth, provider)
+	.then(() => {
+	window.open('loggedin.html','_self')
+
+	}).catch((error) => {
+	// Handle Errors here.
+	const errorCode = error.code;
+	const errorMessage = error.message;
+	// The email of the user's account used.
+	const email = error.customData.email;
+	// The AuthCredential type that was used.
+	const credential = GoogleAuthProvider.credentialFromError(error);
+	// ...
+	showPopup(`Oops! Error occured<br> ${errorCode} <br> ${errorMessage} <br> email: ${email}`);
+});
+});
