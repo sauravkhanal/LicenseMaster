@@ -25,6 +25,16 @@ document.getElementById("login_btn").addEventListener("click",function(e)  {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
+  if (email == "")  {
+    showPopup("Please Enter your Email")
+  }
+  else if (validateEmail(email) == false) {
+    showPopup("Invalid Email format !!")
+  }
+  else if(password.length < 6)  {
+    showPopup('Password must be greater than 6 characters')
+  }
+  else {
   signInWithEmailAndPassword(auth, email, password)
   .then(() => {
   // Signed in 
@@ -33,10 +43,12 @@ document.getElementById("login_btn").addEventListener("click",function(e)  {
   })
   .catch((error) => {
     const errorCode = error.code;
-    const popup = document.getElementById('popup');
-    document.getElementById('popup-text').innerHTML = `${generateErrorMessage(errorCode)} `
-    popup.showModal();
+    // const popup = document.getElementById('popup');
+    // document.getElementById('popup-text').innerHTML = `${generateErrorMessage(errorCode)} `
+    // popup.showModal();
+    showPopup(generateErrorMessage(errorCode))
   });
+}
 
 
 });
@@ -57,19 +69,31 @@ document.getElementById('login_google').addEventListener('click', function (e)  
     // The AuthCredential type that was used.
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
-    alert(`Oops! Error occured\n ${errorCode} : ${errorMessage} \n email ${email}`);
+    showPopup(`Oops! Error occured\n ${errorCode} : ${errorMessage} \n email ${email}`);
   });
 });
 
-//close modal
+// //close modal
+// document.querySelector('#popup-exit-btn').addEventListener('click', () => {
+//   document.querySelector('#popup').close();
+// })
 
-document.querySelector('#popup-exit-btn').addEventListener('click', () => {
-  document.querySelector('#popup').close();
+const popup = document.getElementById("popup") //dialog doesn't work with jquery
+
+$("#popup-exit-btn").click(()=>  {
+  popup.close()
 })
 
+function showPopup(text)  {
+  $("#popup-text").html(text);
+  popup.showModal()
+}
 
 function generateErrorMessage (errorCode)  {
   switch(errorCode)  {
+    case 'auth/network-request-failed':
+      return "<h3>Network error</h3><br>Please check your internet connection."
+
     case 'auth/user-not-found' :
       return "User Doesn't exist";
     
@@ -86,4 +110,16 @@ function generateErrorMessage (errorCode)  {
     return(errorCode)
     
   }
+}
+
+function validateEmail(email) {
+  // Regular expression for email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Check if the email matches the regex pattern
+  if (!emailRegex.test(email)) {
+    return false;
+}
+
+  return true; // No error
 }
